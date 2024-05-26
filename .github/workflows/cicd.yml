@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - 'main'
+  pull_request:
+    branches:
+      - 'main'
       
 jobs:
   deploy:
@@ -47,8 +50,8 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: true
-          platforms: linux/amd64,linux/arm64
+          push: false
+          platforms: linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
